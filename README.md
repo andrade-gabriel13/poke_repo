@@ -2,6 +2,8 @@
 
 Aplicação em **React + Vite** que consome a [PokeAPI](https://pokeapi.co/) para listar Pokémon com nome, imagem oficial e tipos. Também tem busca, scroll infinito, um card ampliado com informações detalhadas e um **duelo entre Pokémon simulado dentro de um Game Boy**.
 
+**🔗 Acesse online:** https://andrade-gabriel13.github.io/poke_repo/
+
 Projeto desenvolvido como atividade prática de React, usando os conceitos vistos em aula: **componentes, props, `useState`, `useEffect` e `fetch`**.
 
 ---
@@ -15,6 +17,7 @@ Projeto desenvolvido como atividade prática de React, usando os conceitos visto
 - [Conceitos de React aplicados](#conceitos-de-react-aplicados)
 - [Endpoints da PokeAPI utilizados](#endpoints-da-pokeapi-utilizados)
 - [Como funciona o duelo](#como-funciona-o-duelo)
+- [Deploy (GitHub Pages)](#deploy-github-pages)
 - [Estrutura do projeto](#estrutura-do-projeto)
 - [Tecnologias](#tecnologias)
 - [Créditos](#créditos)
@@ -210,13 +213,30 @@ A lógica fica em `src/utils/battle.js` e `src/utils/types.js`, separada dos com
 
 ---
 
+## Deploy (GitHub Pages)
+
+O site é publicado automaticamente no GitHub Pages a cada `push` na branch `main`, pelo workflow [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml):
+
+1. Instala as dependências (`npm ci`) e gera o build (`npm run build`).
+2. Publica a pasta `dist/` no GitHub Pages.
+
+Como o site fica em `https://andrade-gabriel13.github.io/poke_repo/` (e não na raiz do domínio), o `vite.config.js` define `base: '/poke_repo/'` para o build. Em desenvolvimento (`npm run dev`) continua na raiz.
+
+**Configuração (feita uma única vez):** no repositório do GitHub, em *Settings → Pages → Build and deployment → Source*, selecione **GitHub Actions**.
+
+O andamento de cada publicação aparece na aba **Actions** do repositório.
+
+---
+
 ## Estrutura do projeto
 
 ```
 poke_repo/
+├── .github/workflows/
+│   └── deploy.yml           # build + publicação no GitHub Pages
 ├── index.html               # página base (fontes e título)
 ├── package.json
-├── vite.config.js
+├── vite.config.js           # inclui o caminho base do GitHub Pages
 ├── eslint.config.js
 └── src/
     ├── main.jsx             # ponto de entrada do React
